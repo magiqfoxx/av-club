@@ -1,0 +1,42 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.calendar--header {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+.calendar--header span {
+  cursor: pointer;
+}
+.calendar--body {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.calendar--body td,
+.calendar--body th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.calendar--body tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.calendar--body td:hover {
+  background-color: #ddd;
+}
+
+.calendar--body th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}

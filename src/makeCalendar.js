@@ -1,8 +1,25 @@
-const date = new Date();
-const year = date.getFullYear();
-const month = date.getMonth();
-const day = date.getDate();
-const weekDay = date.getDay();
+export function getDateToday() {
+  const date = new Date();
+  return [date.getMonth(), date.getDate(), date.getDay(), date.getFullYear()];
+}
+
+export function getMonthWord(month) {
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  return months[month];
+}
 
 export function findFirstDayOfMonth(day, weekDay) {
   if (weekDay - (day % 7) < -1) {
@@ -23,7 +40,7 @@ export function getMonthLength(month, year) {
     } else {
       monthLength = 29;
     }
-  } else if (month in M30Days) {
+  } else if (M30Days.includes(month)) {
     monthLength = 30;
   } else {
     monthLength = 31;
@@ -31,10 +48,10 @@ export function getMonthLength(month, year) {
   return monthLength;
 }
 
-export function getWeeks() {
-  let weeks = [];
-  let days;
-
+export function getWeeks(month, day, weekDay, year) {
+  /*returns an array of arrays [days by week] at 0
+  and last day of last month at 1 and first day of next month at 2
+  */
   function sliceMonthToWeeks(days) {
     let month = [];
     let weeks = Math.ceil(days.length / 7);
@@ -46,36 +63,61 @@ export function getWeeks() {
     }
     return month;
   }
+  let maxDays = [...Array(32).keys()].slice(1); //array of days of 1->31
 
-  if (numberOfWeeks() === 4) {
-    days = [...Array(28).keys()];
+  let weeks = [];
+  let days;
+  let LDLM = [];
+  let FDNM = [];
+
+  /*if (getMonthLength(month, year) === 28) {
+    days = maxDays.slice(0, 28);
     weeks = sliceMonthToWeeks(days);
-    return weeks;
-  } else {
-    //
-    let firstDay = findFirstDayOfMonth(day, weekDay);
+  } else {*/
+  //weekDay of first day this month
+  //MONDAY IS 1!!!!!!!! (Sun is 0. Stupid Americans....)
+  let firstDay = findFirstDayOfMonth(day, weekDay);
 
-    days = [...Array(getMonthLength(month, year)).keys()];
-    let prevM = month > 0 ? month - 1 : 12;
-    let previousMLength = getMonthLength(prevM, year);
-    let prevMDays = [...Array(previousMLength).keys()];
+  //array of days this month
+  days = maxDays.slice(0, getMonthLength(month, year));
 
-    //add days from prev month
-    let prevMFewDays = prevMDays.slice(-firstDay);
-    days = [...prevMFewDays, ...days];
+  //previous month
+  let prevM = month > 0 ? month - 1 : 11;
+  let previousMLength = getMonthLength(prevM, year);
 
-    //add days from next month
-    let daysNextM = [...Array(35 - days.length).keys()];
-    days = [...days, ...daysNextM];
+  let prevMDays = maxDays.slice(0, previousMLength);
 
-    weeks = sliceMonthToWeeks(days);
-  }
-  console.log(weeks);
-  return weeks;
+  //getting last day of last month
+  //LDLM = [date,weekDay]
+  LDLM.push(previousMLength); //date
+  LDLM.push(firstDay > 0 ? firstDay - 1 : 6); //weekday
+
+  //getting first day next month
+  //FDNM = [date, weekday]
+  FDNM.push(1); //date
+  FDNM.push(
+    firstDay + (getMonthLength(month, year) % 7) < 7
+      ? firstDay + (getMonthLength(month, year) % 7)
+      : firstDay + (getMonthLength(month, year) % 7) - 7
+  ); //weekday
+
+  //add days from prev month
+  let prevMFewDays = prevMDays.slice(prevMDays.length - firstDay + 1);
+  days = [...prevMFewDays, ...days];
+
+  //add days from next month
+  let daysNextM = maxDays.slice(
+    0,
+    35 - days.length >= 0 ? 35 - days.length : 42 - days.length
+  );
+  days = [...days, ...daysNextM];
+  weeks = sliceMonthToWeeks(days);
+  //}
+  return [weeks, LDLM, FDNM];
 }
 
-export function numberOfWeeks() {
-  return Math.ceil(getMonthLength % 7);
+export function numberOfWeeks(month, year) {
+  return Math.ceil(getMonthLength(month, year) / 7);
 }
 
 export function daysOfTheWeek() {
@@ -88,28 +130,4 @@ export function daysOfTheWeek() {
     "Saturday",
     "Sunday"
   ];
-}
-export function getMonthWord() {
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
-  return months[month];
-}
-export function getMonth() {
-  return month;
-}
-
-export function getDate() {
-  return [getMonthLength(), findFirstDayOfMonth()];
 }
