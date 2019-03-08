@@ -5,18 +5,18 @@ export function getDateToday() {
 
 export function getMonthWord(month) {
   let months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
   ];
   return months[month];
 }
@@ -50,19 +50,9 @@ export function getMonthLength(month, year) {
 
 export function getWeeks(month, day, weekDay, year) {
   /*returns an array of arrays [days by week] at 0
-  and last day of last month at 1 and first day of next month at 2
-  */
-  function sliceMonthToWeeks(days) {
-    let month = [];
-    let weeks = Math.ceil(days.length / 7);
-    let thisWeek;
+    and last day of last month at 1 and first day of next month at 2
+    */
 
-    for (let i = 0; i < weeks; i++) {
-      thisWeek = days.slice(7 * i, (i + 1) * 7);
-      month.push(thisWeek);
-    }
-    return month;
-  }
   let maxDays = [...Array(32).keys()].slice(1); //array of days of 1->31
 
   let weeks = [];
@@ -71,9 +61,9 @@ export function getWeeks(month, day, weekDay, year) {
   let FDNM = [];
 
   /*if (getMonthLength(month, year) === 28) {
-    days = maxDays.slice(0, 28);
-    weeks = sliceMonthToWeeks(days);
-  } else {*/
+      days = maxDays.slice(0, 28);
+      weeks = sliceMonthToWeeks(days);
+    } else {*/
   //weekDay of first day this month
   //MONDAY IS 1!!!!!!!! (Sun is 0. Stupid Americans....)
   let firstDay = findFirstDayOfMonth(day, weekDay);
@@ -103,16 +93,20 @@ export function getWeeks(month, day, weekDay, year) {
 
   //add days from prev month
   let prevMFewDays = prevMDays.slice(prevMDays.length - firstDay + 1);
-  days = [...prevMFewDays, ...days];
+
+  //days = [...prevMFewDays, ...days];
 
   //add days from next month
   let daysNextM = maxDays.slice(
     0,
     35 - days.length >= 0 ? 35 - days.length : 42 - days.length
   );
-  days = [...days, ...daysNextM];
-  weeks = sliceMonthToWeeks(days);
 
+  //days = [...days, ...daysNextM];
+
+  return [prevMFewDays, days, daysNextM, LDLM, FDNM];
+
+  //}
   return [weeks, LDLM, FDNM];
 }
 
@@ -121,13 +115,5 @@ export function numberOfWeeks(month, year) {
 }
 
 export function daysOfTheWeek() {
-  return [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-  ];
+  return ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 }

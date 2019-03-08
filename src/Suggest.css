@@ -1,0 +1,18 @@
+.suggest {
+  text-align: center;
+  margin: 0 auto;
+}
+.suggest form {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  background-color: #f9ececb8;
+  padding: 2rem;
+  text-align: left;
+}
+.suggest form input,
+span {
+  width: 10rem;
+  text-align: center;
+  margin: 0 auto;
+}

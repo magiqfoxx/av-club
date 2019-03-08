@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 
 import Calendar from "./Calendar";
+import Grid from "./Grid";
 
 class Schedule extends Component {
   state = {};
 
   render() {
     return (
-      <div className="calendar">
-        <Calendar />
+      <div className="schedule">
+        <Grid />
       </div>
     );
   }

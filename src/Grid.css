@@ -1,0 +1,47 @@
+.schedule {
+  align-self: center;
+  padding: 0 4rem;
+}
+.month {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}
+.month span {
+  display: inline-block;
+  margin: 0rem 7vw;
+  cursor: pointer;
+}
+.month span:nth-child(1) {
+  transform: rotate(180deg);
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  max-width: 1500px;
+  margin: 0 auto;
+}
+.calendar--weekDays {
+  background-color: rgb(208, 84, 112);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+.calendar--days {
+  background-color: white;
+  margin: 0.1rem;
+  color: rgb(208, 84, 112);
+  min-height: 10vh;
+}
+.calendar--days .day h3 {
+  font-size: 0.5rem;
+  padding: 0.5rem;
+  margin: 0rem;
+}
+.calendar--days__lastM,
+.calendar--days__nextM {
+  color: gray;
+}

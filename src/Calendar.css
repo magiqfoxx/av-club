@@ -1,4 +1,4 @@
-.calendar {
+/*.calendar {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,4 +39,73 @@
   text-align: left;
   background-color: #4caf50;
   color: white;
+}*/
+.calendar--header {
+  text-transform: uppercase;
+}
+/*COLORS*/
+html {
+  --green: #dbe9b7;
+  --white: #fdfdf6;
+  --pink: #f4dada;
+  --brown: #b8b2a6;
+}
+.calendar--header {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+.calendar--header span {
+  cursor: pointer;
+}
+th {
+  padding: 1rem;
+}
+table {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+
+  /* background-image: linear-gradient(to right, white, #e6decea3);*/
+}
+table .calendar--weekDays {
+  border-collapse: collapse;
+  color: white;
+}
+table .calendar--days {
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+.calendar--body td {
+  border: 1px solid rgb(208, 84, 112);
+  text-align: center;
+  cursor: pointer;
+  background-color: rgb(249, 249, 249);
+  color: rgb(208, 84, 112);
+}
+.calendar--body td {
+  position: relative;
+}
+
+.calendar--body td .day h3 {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.calendar--body td:hover {
+  background-color: var(--brown);
+  transition-duration: 2s;
+}
+.calendar--body tbody tr th {
+  background-color: rgb(208, 84, 112);
+  border: none;
+}
+/*.calendar--body tr:nth-child(even) {
+  background-color: var(--white);
+}*/
+
+body {
+  background-color: rgb(254, 192, 193);
+  font-family: sans-serif;
 }

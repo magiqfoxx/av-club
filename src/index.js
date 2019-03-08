@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import Schedule from "./Schedule";
+import App from "./App";
 
-ReactDOM.render(<Schedule />, document.getElementById("root"));
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById("root")
+);

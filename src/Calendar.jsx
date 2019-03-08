@@ -64,12 +64,16 @@ class Calendar extends Component {
     //this.setState({ LDLM: thisMonth[1], FDNM: thisMonth[2] });
     let weeks = thisMonth[0].map((week, i) => {
       return (
-        <tr key={i}>
+        <tr key={i} className="calendar--days">
           {/* DAY BY DAY */}
           {week.map((day, j) => {
             return (
               <td key={j}>
-                <CalendarDay day={day} />
+                <CalendarDay
+                  day={day}
+                  month={this.state.currentMonth}
+                  year={this.state.currentYear}
+                />
               </td>
             );
           })}
@@ -95,7 +99,7 @@ class Calendar extends Component {
         <table className="calendar--body">
           {/* HEADER */}
           <tbody>
-            <tr>
+            <tr className="calendar--weekDays">
               {daysOfTheWeek().map((dayOfTheWeek, x) => {
                 return <th key={x}>{dayOfTheWeek}</th>;
               })}
