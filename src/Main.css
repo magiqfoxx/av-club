@@ -25,7 +25,7 @@ a {
 main {
   align-self: center;
   margin: 0 auto;
-  padding: 5rem;
+  padding: 2rem 4rem;
   max-width: 1000px;
   text-align: center;
   background-color: #f9ececb8;
@@ -59,4 +59,8 @@ button {
   background-color: rgb(208, 84, 112);
   transition-duration: 0.5s;
   color: white;
+}
+main--next-movie {
+  margin: 0 auto;
+  text-align: center;
 }

@@ -12,6 +12,7 @@ const Books = () => {
         <br />
         No sharp weapons but you're allowed to smack people.
       </p>
+      <p>Sign up to learn more</p>
       <form>
         <input type="text" placeholder="email..." />
       </form>

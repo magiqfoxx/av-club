@@ -64,7 +64,7 @@ class Grid extends Component {
     this.LDLM = week[3]; //last day of last month
     this.FDNM = week[4];
 
-    let month = getMonthWord(this.state.month);
+    let month = getMonthWord(this.state.month).slice(0, 3);
 
     //weekDays
     let weekDays = daysOfTheWeek().map((dayOfTheWeek, x) => {
@@ -81,8 +81,8 @@ class Grid extends Component {
         <div key={i} className="calendar--days calendar--days__lastM">
           <CalendarDay
             day={day}
-            month={this.state.month}
-            year={this.state.year}
+            month={this.state.month > 0 ? this.state.month : 11}
+            year={this.state.month > 0 ? this.state.year : this.state.year - 1}
           />
         </div>
       );
@@ -94,8 +94,8 @@ class Grid extends Component {
         <div key={i} className="calendar--days calendar--days__thisM">
           <CalendarDay
             day={day}
-            month={this.state.currentMonth}
-            year={this.state.currentYear}
+            month={this.state.month + 1}
+            year={this.state.year}
           />
         </div>
       );
@@ -106,8 +106,8 @@ class Grid extends Component {
         <div key={i} className="calendar--days calendar--days__nextM">
           <CalendarDay
             day={day}
-            month={this.state.currentMonth}
-            year={this.state.currentYear}
+            month={this.state.month < 11 ? this.state.month + 2 : 0}
+            year={this.state.month < 11 ? this.state.year : this.state.year + 1}
           />
         </div>
       );

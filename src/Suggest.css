@@ -1,6 +1,7 @@
 .suggest {
   text-align: center;
   margin: 0 auto;
+  color: #f9ececb8;
 }
 .suggest form {
   display: flex;
@@ -15,4 +16,5 @@ span {
   width: 10rem;
   text-align: center;
   margin: 0 auto;
+  color: #717171;
 }
