@@ -5,6 +5,7 @@ import Main from "./Main";
 import Grid from "./Grid";
 import Suggest from "./Suggest";
 import Books from "./Books";
+import Signup from "./components/Signup/index";
 
 import "./App.css";
 
@@ -32,6 +33,7 @@ const App = () => {
       <Route path="/schedule/" component={Grid} />
       <Route path="/suggest/" component={Suggest} />
       <Route path="/books/" component={Books} />
+      <Route path="/signup/" component={Signup} />
       <footer />
     </div>
   );

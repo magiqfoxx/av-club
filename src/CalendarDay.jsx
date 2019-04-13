@@ -10,6 +10,8 @@ class CalendarDay extends Component {
   };
 
   renderMovies = date => {
+    //var userId = firebase.auth().currentUser.uid;
+
     for (let movie of database) {
       if (movie.date === date) {
         return (

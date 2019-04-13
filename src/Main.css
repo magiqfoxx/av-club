@@ -60,7 +60,6 @@ button {
   transition-duration: 0.5s;
   color: white;
 }
-main--next-movie {
-  margin: 0 auto;
-  text-align: center;
+.main--next-movie {
+  justify-self: center;
 }

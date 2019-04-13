@@ -1,0 +1,16 @@
+.sign-up form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 15rem;
+}
+.sign-up input {
+  width: 10rem;
+  margin: 0 auto;
+}
+.sign-up button {
+  margin: 1rem auto;
+}
+.sign-up button:active {
+  background-color: pink;
+}
