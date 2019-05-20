@@ -7,7 +7,7 @@ import "./Main.css";
 const Main = () => {
   return (
     <React.Fragment>
-      <main>
+      <main className="landing">
         <h2>Welcome to the AV club</h2>
         <p>
           Do you like movies? We do too! <br />

@@ -24,3 +24,5 @@ yarn-error.log*
 
 /other
 /src/movies/other
+
+/src/components/Firebase/firebase.js

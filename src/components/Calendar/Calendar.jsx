@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { getMonthWord } from "./makeGrid";
-import { daysOfTheWeek } from "./makeGrid";
-import { getWeeks } from "./makeGrid";
-import { getDateToday } from "./makeGrid";
+import { getMonthWord } from "./helpers";
+import { getDaysOfTheWeek } from "./helpers";
+import { getWeeks } from "./helpers";
+import { getDateToday } from "./helpers";
+import Loader from "../Loader";
 
-import "./Grid.css";
+import "./Calendar.css";
 import CalendarDay from "./CalendarDay";
 
-class Grid extends Component {
+class Calendar extends Component {
   state = {};
 
   LDLM = [];
@@ -59,15 +60,13 @@ class Grid extends Component {
       this.state.weekDay,
       this.state.year
     );
-    //this.setState({ LDLM: thisMonth[1], FDNM: thisMonth[2] });
 
     this.LDLM = week[3]; //last day of last month
-    this.FDNM = week[4];
+    this.FDNM = week[4]; //first day of next month
 
     let month = getMonthWord(this.state.month).slice(0, 3);
 
-    //weekDays
-    let weekDays = daysOfTheWeek().map((dayOfTheWeek, x) => {
+    const daysOfTheWeek = getDaysOfTheWeek().map((dayOfTheWeek, x) => {
       return (
         <div key={x} className="calendar--weekDays">
           {dayOfTheWeek}
@@ -75,8 +74,7 @@ class Grid extends Component {
       );
     });
 
-    //last month
-    let lastM = week[0].map((day, i) => {
+    const daysLastMonth = week[0].map((day, i) => {
       return (
         <div key={i} className="calendar--days calendar--days__lastM">
           <CalendarDay
@@ -88,8 +86,7 @@ class Grid extends Component {
       );
     });
 
-    //this month
-    let thisM = week[1].map((day, i) => {
+    const daysThisMonth = week[1].map((day, i) => {
       return (
         <div key={i} className="calendar--days calendar--days__thisM">
           <CalendarDay
@@ -101,7 +98,7 @@ class Grid extends Component {
       );
     });
 
-    let nextM = week[2].map((day, i) => {
+    const daysNextMonth = week[2].map((day, i) => {
       return (
         <div key={i} className="calendar--days calendar--days__nextM">
           <CalendarDay
@@ -116,18 +113,33 @@ class Grid extends Component {
     return (
       <React.Fragment>
         <div className="month">
-          <span onClick={this.previousMonth}>➭</span>
+          <button
+            className="month--button"
+            alt="previous month"
+            onClick={this.previousMonth}
+          >
+            ➭
+          </button>
           {month}
-          <span onClick={this.nextMonth}>➮</span>
+          <button
+            className="month--button"
+            alt="next month"
+            onClick={this.nextMonth}
+          >
+            ➮
+          </button>
         </div>
 
-        <div className="calendar">{[weekDays, lastM, thisM, nextM]}</div>
+        <div className="calendar">
+          {[daysOfTheWeek, daysLastMonth, daysThisMonth, daysNextMonth]}
+        </div>
       </React.Fragment>
     );
   };
+
   render() {
-    return <div className="schedule">{this.renderCalendar()}</div>;
+    return this.props.movies ? this.renderCalendar() : <Loader />;
   }
 }
 
-export default Grid;
+export default Calendar;

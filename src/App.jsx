@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import Main from "./Main";
-import Grid from "./Grid";
-import Suggest from "./Suggest";
-import Books from "./Books";
-import Signup from "./components/Signup/index";
+import Main from "./components/Main";
+import Schedule from "./components/Schedule";
+import Suggest from "./components/Suggest";
+import Books from "./components/Books";
 
 import "./App.css";
 
@@ -30,10 +29,10 @@ const App = () => {
       </nav>
 
       <Route path="/" exact component={Main} />
-      <Route path="/schedule/" component={Grid} />
+      <Route path="/schedule/" component={Schedule} />
       <Route path="/suggest/" component={Suggest} />
       <Route path="/books/" component={Books} />
-      <Route path="/signup/" component={Signup} />
+      <Route path="/signup/" component={Books} />
       <footer />
     </div>
   );

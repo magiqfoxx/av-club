@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { getMonthWord } from "./makeCalendar";
-import { daysOfTheWeek } from "./makeCalendar";
-import { getWeeks } from "./makeCalendar";
-import { getDateToday } from "./makeCalendar";
+import { getMonthWord } from "./makeCalendarOlder";
+import { daysOfTheWeek } from "./makeCalendarOlder";
+import { getWeeks } from "./makeCalendarOlder";
+import { getDateToday } from "./makeCalendarOlder";
 
 import "./Calendar.css";
 import CalendarDay from "./CalendarDay";
 
-class Calendar extends Component {
+class CalendarOld extends Component {
   state = {};
   LDLM = [];
   FDNM = [];
@@ -114,4 +114,4 @@ class Calendar extends Component {
   }
 }
 
-export default Calendar;
+export default CalendarOld;

@@ -8,13 +8,20 @@
   text-align: center;
   text-transform: uppercase;
 }
+.month--button {
+  background-color: transparent;
+  font-size: 3rem;
+  color: gray;
+  vertical-align: baseline;
+  cursor: pointer;
+}
 .month span {
   display: inline-block;
   margin: 0rem 7vw;
-  cursor: pointer;
 }
-.month span:nth-child(1) {
+.month--button:nth-child(1) {
   transform: rotate(180deg);
+  vertical-align: -webkit-baseline-middle;
 }
 .calendar {
   display: grid;

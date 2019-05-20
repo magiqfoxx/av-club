@@ -22,7 +22,7 @@ a {
   text-decoration: inherit;
   color: inherit;
 }
-main {
+.landing {
   align-self: center;
   margin: 0 auto;
   padding: 2rem 4rem;
@@ -30,13 +30,13 @@ main {
   text-align: center;
   background-color: #f9ececb8;
 }
-main h2 {
+.landing h2 {
   margin: 1rem;
 }
-main p {
+.landing p {
   line-height: 2rem;
 }
-main form {
+.landing form {
   margin: 1rem;
 }
 button {
