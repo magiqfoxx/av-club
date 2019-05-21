@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Main from "./components/Main";
-import Schedule from "./components/Schedule";
+import Schedule from "./components/Calendar/Schedule";
 import Suggest from "./components/Suggest";
 import Books from "./components/Books";
 

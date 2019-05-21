@@ -1,3 +1,21 @@
+export const addZero = number => {
+  if (number < 10) {
+    return "0" + number;
+  } else {
+    return number;
+  }
+};
+
+export const getDate = date =>
+  `${addZero(date.getDate())}.${addZero(
+    date.getMonth() + 1
+  )}.${date.getFullYear()}`;
+
+export const getTime = date => {
+  const minutes =
+    date.getMinutes() > 9 ? date.getMinutes() : `0${date.getMinutes()}`;
+  return `${date.getHours()}:${minutes}`;
+};
 export function getDateToday() {
   const date = new Date();
   return [date.getMonth(), date.getDate(), date.getDay(), date.getFullYear()];
@@ -49,8 +67,10 @@ export function getMonthLength(month, year) {
 }
 
 export function getWeeks(month, day, weekDay, year) {
-  /*returns an array of arrays [days by week] at 0
-    and last day of last month at 1 and first day of next month at 2
+  /*returns an array of arrays where 
+    0: [days by week]
+    1: last day of last month 
+    and 2: first day of next month 
     */
 
   let maxDays = [...Array(32).keys()].slice(1); //array of days of 1->31
@@ -65,7 +85,7 @@ export function getWeeks(month, day, weekDay, year) {
       weeks = sliceMonthToWeeks(days);
     } else {*/
   //weekDay of first day this month
-  //MONDAY IS 1!!!!!!!! (Sun is 0. Stupid Americans....)
+  //MONDAY IS 1!!!!!!!! (Sun is 0. Americans....)
   let firstDay = findFirstDayOfMonth(day, weekDay);
 
   //array of days this month

@@ -11,9 +11,6 @@ import CalendarDay from "./CalendarDay";
 class Calendar extends Component {
   state = {};
 
-  LDLM = [];
-  FDNM = [];
-
   componentWillMount() {
     let date = getDateToday();
     this.setState({
@@ -76,8 +73,10 @@ class Calendar extends Component {
 
     const daysLastMonth = week[0].map((day, i) => {
       return (
-        <div key={i} className="calendar--days calendar--days__lastM">
+        <div key={day} className="calendar--days calendar--days__lastM">
           <CalendarDay
+            movies={this.props.movies}
+            suggestedMovies={this.props.suggestedMovies}
             day={day}
             month={this.state.month > 0 ? this.state.month : 11}
             year={this.state.month > 0 ? this.state.year : this.state.year - 1}
@@ -88,8 +87,10 @@ class Calendar extends Component {
 
     const daysThisMonth = week[1].map((day, i) => {
       return (
-        <div key={i} className="calendar--days calendar--days__thisM">
+        <div key={day} className="calendar--days calendar--days__thisM">
           <CalendarDay
+            movies={this.props.movies}
+            suggestedMovies={this.props.suggestedMovies}
             day={day}
             month={this.state.month + 1}
             year={this.state.year}
@@ -100,8 +101,10 @@ class Calendar extends Component {
 
     const daysNextMonth = week[2].map((day, i) => {
       return (
-        <div key={i} className="calendar--days calendar--days__nextM">
+        <div key={day} className="calendar--days calendar--days__nextM">
           <CalendarDay
+            movies={this.props.movies}
+            suggestedMovies={this.props.suggestedMovies}
             day={day}
             month={this.state.month < 11 ? this.state.month + 2 : 0}
             year={this.state.month < 11 ? this.state.year : this.state.year + 1}

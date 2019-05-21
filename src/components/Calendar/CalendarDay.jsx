@@ -1,18 +1,20 @@
 import React, { Component } from "react";
+import { firestore } from "../firebase.js";
 
-import database from "./database";
+import { addZero } from "./helpers";
 
 class CalendarDay extends Component {
-  state = {};
+  state = {
+    movies: this.props.movies,
+    suggestedMovies: this.props.suggestedMovies
+  };
+
   handleClick = e => {
     e.target.style.visibility = "hidden";
-    //this.content = "props.month";
   };
 
   renderMovies = date => {
-    //var userId = firebase.auth().currentUser.uid;
-
-    for (let movie of database) {
+    for (let movie of this.state.movies) {
       if (movie.date === date) {
         return (
           <h3 className="calendar--day day">
@@ -22,19 +24,11 @@ class CalendarDay extends Component {
       }
     }
   };
-  addZero = number => {
-    if (number < 10) {
-      return "0" + number;
-    } else {
-      return number;
-    }
-  };
   render() {
     //has to rerendered every time!? otherwise the props.month wouldn't change
-
-    let date = `${this.addZero(this.props.day)}.${this.addZero(
-      this.props.month
-    )}.${this.props.year}`;
+    let date = `${addZero(this.props.day)}.${addZero(this.props.month)}.${
+      this.props.year
+    }`;
     return (
       <div className="day" onClick={e => this.handleClick(e)}>
         <h3>{this.props.day}</h3>
